@@ -9,27 +9,31 @@
     <version>0.0.1-SNAPSHOT</version>
     <description>SGCIB Bank account Kata</description>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.0.RELEASE</version>
-    </parent>
-
     <properties>
         <java.version>1.8</java.version>
         <source.encoding>UTF-8</source.encoding>
-        <start-class>fr.carbonit.kata.bankaccount.BankAccountKata</start-class>
+
+        <version.junit>4.12</version.junit>
+        <version.cucumber>1.2.4</version.cucumber>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${version.junit}</version>
+            <scope>test</scope>
         </dependency>
-
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${version.cucumber}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>${version.cucumber}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
