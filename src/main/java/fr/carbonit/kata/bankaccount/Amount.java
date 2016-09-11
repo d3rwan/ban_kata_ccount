@@ -43,6 +43,11 @@ public class Amount {
     }
 
     @Override
+    public String toString() {
+        return this.value.toString();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -62,7 +67,7 @@ public class Amount {
      * @param amountToAdd amount to add
      * @return new amount value
      */
-    Amount add(Amount amountToAdd) {
+    public Amount add(Amount amountToAdd) {
         if (amountToAdd == null) {
             throw new IllegalArgumentException("Null can't be add to the amount");
         }
@@ -75,7 +80,7 @@ public class Amount {
      * @param amountToSubtract
      * @return new amount value
      */
-    Amount subtract(Amount amountToSubtract) {
+    public Amount subtract(Amount amountToSubtract) {
         if (amountToSubtract == null) {
             throw new IllegalArgumentException("Null can't be substract to the amount");
         }

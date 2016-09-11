@@ -42,11 +42,6 @@ public class AccountStepdefs {
         }
     }
 
-    @And("^My account balance should be (\\d+)$")
-    public void my_account_balance_must_be(double expectedBalance) throws Throwable {
-        assertEquals(account.getBalance().getValue().doubleValue(), expectedBalance, 0D);
-    }
-
     @Then("^It works$")
     public void itWorks() throws Throwable {
         assertFalse(fail);
@@ -55,5 +50,10 @@ public class AccountStepdefs {
     @Then("^It fails$")
     public void itFails() throws Throwable {
         assertTrue(fail);
+    }
+
+    @And("^My account balance should be (\\d+)$")
+    public void my_account_balance_must_be(double expectedBalance) throws Throwable {
+        assertEquals(account.getBalance().getValue().doubleValue(), expectedBalance, 0D);
     }
 }

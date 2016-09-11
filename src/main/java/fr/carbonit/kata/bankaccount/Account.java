@@ -1,5 +1,12 @@
 package fr.carbonit.kata.bankaccount;
 
+import fr.carbonit.kata.bankaccount.operations.Deposit;
+import fr.carbonit.kata.bankaccount.operations.Withdrawal;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Account
  */
@@ -11,10 +18,15 @@ public class Account {
     private Amount balance;
 
     /**
+     * transactions applied on this account
+     */
+    private List<Transaction> transactions;
+
+    /**
      * Constructor without initial deposit
      */
     public Account() {
-        this.balance = Amount.ZERO;
+        this(Amount.ZERO);
     }
 
     /**
@@ -24,6 +36,19 @@ public class Account {
      */
     public Account(Amount initialDeposit) {
         this.balance = new Amount(initialDeposit.getValue());
+        this.transactions = new ArrayList<>();
+    }
+
+    /**
+     * Make a deposit to the account
+     *
+     * @param amountToDeposit amount to deposit
+     * @param timestamp       timestamp of the deposit
+     */
+    public void deposit(Amount amountToDeposit, LocalDate timestamp) {
+        Deposit deposit = new Deposit(amountToDeposit);
+        this.balance = deposit.performOn(this);
+        this.transactions.add(new Transaction(timestamp, this, deposit, this.balance));
     }
 
     /**
@@ -32,7 +57,19 @@ public class Account {
      * @param amountToDeposit amount to deposit
      */
     public void deposit(Amount amountToDeposit) {
-        this.balance = balance.add(amountToDeposit);
+        this.deposit(amountToDeposit, LocalDate.now());
+    }
+
+    /**
+     * Make a withdrawal to the account
+     *
+     * @param amountToWithdraw amount to withdraw
+     * @param timestamp        timestamp of the withdraw
+     */
+    public void withdraw(Amount amountToWithdraw, LocalDate timestamp) {
+        Withdrawal withdrawal = new Withdrawal(amountToWithdraw);
+        this.balance = withdrawal.performOn(this);
+        this.transactions.add(new Transaction(timestamp, this, withdrawal, this.balance));
     }
 
     /**
@@ -41,7 +78,7 @@ public class Account {
      * @param amountToWithdraw amount to withdraw
      */
     public void withdraw(Amount amountToWithdraw) {
-        this.balance = balance.subtract(amountToWithdraw);
+        this.withdraw(amountToWithdraw, LocalDate.now());
     }
 
     /**
@@ -51,5 +88,14 @@ public class Account {
      */
     public Amount getBalance() {
         return balance;
+    }
+
+    /**
+     * Get the list of transaction
+     *
+     * @return the list of transaction
+     */
+    public List<Transaction> getTransactions() {
+        return transactions;
     }
 }
