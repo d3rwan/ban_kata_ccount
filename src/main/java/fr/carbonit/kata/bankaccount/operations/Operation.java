@@ -3,8 +3,6 @@ package fr.carbonit.kata.bankaccount.operations;
 import fr.carbonit.kata.bankaccount.Account;
 import fr.carbonit.kata.bankaccount.Amount;
 
-import java.time.LocalDateTime;
-
 /**
  * Operation
  */

@@ -8,12 +8,12 @@ public class Amount {
     /**
      * Empty amount
      */
-    private static Double EMPTY = 0D;
+    private static final Double EMPTY = 0D;
 
     /**
      * Initial balance with default value
      */
-    public static Amount ZERO = new Amount();
+    public static final Amount ZERO = new Amount();
 
     /**
      * amount value
@@ -49,8 +49,12 @@ public class Amount {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Amount amount = (Amount) o;
         return value != null ? value.equals(amount.value) : amount.value == null;
 
