@@ -32,13 +32,13 @@ public class HistoryTest {
 
         StringBuilder expectedOutput = new StringBuilder();
         expectedOutput.append(History.REPORT_HEADER);
-        expectedOutput.append("\n");
+        expectedOutput.append("\r\n");
         expectedOutput.append(String.format(REPORT_FORMAT,
                 DEPOSIT, depositDate.format(DATE_FORMATTER), depositValue, new Amount(550D)));
-        expectedOutput.append("\n");
+        expectedOutput.append("\r\n");
         expectedOutput.append(String.format(REPORT_FORMAT,
                 WITHDRAWAL, withdrawDate.format(DATE_FORMATTER), withdrawValue, new Amount(450D)));
-        expectedOutput.append("\n");
+        expectedOutput.append("\r\n");
 
         // when
         history.print(ps);
